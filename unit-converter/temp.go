@@ -5,16 +5,16 @@ import (
 )
 
 var tempAliases = map[string]string{
-	"c":       "c",
-	"celsius": "c",
-	"degc":    "c",
+	"c":       "celsius",
+	"celsius": "celsius",
+	"degc":    "celsius",
 
-	"f":          "f",
-	"fahrenheit": "f",
-	"degf":       "f",
+	"f":          "fahrenheit",
+	"fahrenheit": "fahrenheit",
+	"degf":       "fahrenheit",
 
-	"k":      "k",
-	"kelvin": "k",
+	"k":      "kelvin",
+	"kelvin": "kelvin",
 }
 
 func CelsiusToFahrenheit(c float64) float64 {
@@ -39,15 +39,15 @@ func KelvinToCelsius(k float64) float64 {
 func TempConvert(value float64, unit string) (c float64, f float64, k float64, err error) {
 
 	switch unit {
-	case "c":
+	case "celsius":
 		c = value
 		f = CelsiusToFahrenheit(value)
 		k = CelsiusToKelvin(value)
-	case "f":
+	case "fahrenheit":
 		c = FahrenheitToCelsius(value)
 		f = value
 		k = FahrenheitToKelvin(value)
-	case "k":
+	case "kelvin":
 		c = KelvinToCelsius(value)
 		f = KelvinToFahrenheit(value)
 		k = value

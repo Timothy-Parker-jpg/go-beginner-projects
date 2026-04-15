@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 type UnitType string
 
 const (
@@ -15,9 +19,8 @@ type UnitDef struct {
 	// Factor float64
 }
 
-var MasterAliasMap map[string]UnitDef
-
-func initMasterAliasMap() {
+func initMasterAliasMap() map[string]UnitDef {
+	MasterAliasMap := make(map[string]UnitDef)
 	for k, v := range lengthAliases {
 		MasterAliasMap[k] = UnitDef{Unit: v, Type: Length}
 	}
@@ -30,9 +33,27 @@ func initMasterAliasMap() {
 	for k, v := range volumeAliases {
 		MasterAliasMap[k] = UnitDef{Unit: v, Type: Volume}
 	}
+
+	return MasterAliasMap
 }
 
 func listUnits() {
-	values := make([]UnitDef, 0, len(MasterAliasMap))
-	sort.
+	fmt.Println("\t\tSupported Units")
+	fmt.Println("Length:")
+	for k, _ := range lengthToMeter {
+		fmt.Println("\t" + k)
+	}
+	fmt.Println("Weight:")
+	for k, _ := range weightToKilogram {
+		fmt.Println("\t" + k)
+	}
+	fmt.Println("Temp:")
+	for k, _ := range tempAliases {
+		fmt.Println("\t" + k)
+	}
+	fmt.Println("Volume:")
+	for k, _ := range volumeToLiters {
+		fmt.Println("\t" + k)
+	}
+
 }

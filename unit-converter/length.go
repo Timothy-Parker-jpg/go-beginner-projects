@@ -38,7 +38,7 @@ var lengthAliases = map[string]string{
 	"miles": "mile",
 }
 
-var lengthMap = map[string]float64{
+var lengthToMeter = map[string]float64{
 	"millimeter": 0.001,
 	"centimeter": 0.01,
 	"meter":      1,
@@ -49,9 +49,9 @@ var lengthMap = map[string]float64{
 }
 
 func listLengths() []string {
-	keys := make([]string, 0, len(lengthMap))
+	keys := make([]string, 0, len(lengthToMeter))
 
-	for k := range lengthMap {
+	for k := range lengthToMeter {
 		keys = append(keys, k)
 	}
 	sort.Strings(keys)
@@ -67,5 +67,5 @@ func IsLength(unit string) bool {
 }
 
 func ConvertLength(value float64, from, to string) float64 {
-	return value * lengthMap[from] / lengthMap[to]
+	return value * lengthToMeter[from] / lengthToMeter[to]
 }

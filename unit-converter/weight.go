@@ -5,38 +5,38 @@ import (
 )
 
 var weightAliases = map[string]string{
-	"g":     "g",
-	"gram":  "g",
-	"grams": "g",
+	"g":     "gram",
+	"gram":  "gram",
+	"grams": "gram",
 
-	"kg":        "kg",
-	"kilogram":  "kg",
-	"kilograms": "kg",
+	"kg":        "kilogram",
+	"kilogram":  "kilogram",
+	"kilograms": "kilogram",
 
-	"mg":         "mg",
-	"milligram":  "mg",
-	"milligrams": "mg",
+	"mg":         "milligram",
+	"milligram":  "milligram",
+	"milligrams": "milligram",
 
-	"lb":     "lb",
-	"pound":  "lb",
-	"pounds": "lb",
+	"lb":     "pound",
+	"pound":  "pound",
+	"pounds": "pound",
 
-	"oz":     "oz",
-	"ounce":  "oz",
-	"ounces": "oz",
+	"oz":     "ounce",
+	"ounce":  "ounce",
+	"ounces": "ounce",
 }
 
-var weightMap = map[string]float64{
-	"mg":  0.000001,  // milligram
-	"g":   0.001,     // gram
-	"kg":  1,         // base unit
-	"lb":  0.453592,  // pound
-	"oz":  0.0283495, // ounce
-	"ton": 1000,      // metric ton
+var weightToKilogram = map[string]float64{
+	"milligram": 0.000001,  // milligram
+	"gram":      0.001,     // gram
+	"kilogram":  1,         // base unit
+	"pound":     0.453592,  // pound
+	"ounce":     0.0283495, // ounce
+	"ton":       1000,      // metric ton
 }
 
 func listWeights() []string {
-	keys := make([]string, 0, len(weightMap))
+	keys := make([]string, 0, len(weightToKilogram))
 
 	for k := range weightAliases {
 		keys = append(keys, k)
@@ -47,11 +47,11 @@ func listWeights() []string {
 }
 
 func IsWeight(unit string) bool {
-	if _, ok := weightMap[unit]; ok {
+	if _, ok := weightToKilogram[unit]; ok {
 		return true
 	}
 	return false
 }
 func ConvertWeight(value float64, from, to string) float64 {
-	return value * weightMap[from] / weightMap[to]
+	return value * weightToKilogram[from] / weightToKilogram[to]
 }
